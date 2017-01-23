@@ -41,7 +41,6 @@ class test_add_group(unittest.TestCase):
     def logout(self, wd):
         # logout
         wd.find_element_by_link_text("Logout").click()
-        wd.find_element_by_css_selector("html").click()
 
     def return_to_group_page(self, wd):
         # return to group page
@@ -73,7 +72,6 @@ class test_add_group(unittest.TestCase):
 
     def login(self, wd, username, password):
         # login
-        wd.find_element_by_css_selector("html").click()
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("%s" % username)
