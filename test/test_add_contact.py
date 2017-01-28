@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-from group_address import Address_data
-from application_contact import Application_contact
+from fixture.application_contact import Application_contact
+from model.group_address import Address_data
 
 
 @pytest.fixture
