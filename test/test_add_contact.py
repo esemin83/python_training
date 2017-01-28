@@ -4,8 +4,7 @@ from model.group_address import Address_data
 from fixture.application_contact import Application_contact
 
 
-
-@pytest.fixture
+@pytest.fixture(scope="session")
 def app(request):
     fixture = Application_contact()
     request.addfinalizer(fixture.destroy)
