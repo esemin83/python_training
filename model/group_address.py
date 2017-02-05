@@ -1,6 +1,8 @@
+
+
 class Address_data:
-    def __init__ (self,firstname, middlename, lastname ,nickname,company,address,home_phone,mobile_phone,
-                  work_phone,email_1,email_2,home_page):
+    def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, company=None, address=None,
+                 home_phone=None, mobile_phone=None, work_phone=None, email_1=None, email_2=None, home_page=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
