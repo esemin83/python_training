@@ -3,6 +3,7 @@
 class GroupHelper:
 #####################################################################################################
     # groups metods
+
     def __init__(self, app):
         self.app = app
 
@@ -69,8 +70,14 @@ class GroupHelper:
         self.open_groups_page()
         wd.find_element_by_name("selected[]").click()
 
+    def count_groups(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        return len(wd.find_element_by_name("selected[]").text)
+
 #####################################################################################################
     # contact metods
+
     def add_new_address_form(self, address_data):
         # add new contact
         wd = self.app.wd
@@ -98,12 +105,6 @@ class GroupHelper:
     def delete_first_contact(self):
         wd = self.app.wd
         # submit deletion
-        #wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
-        # delete contact
-        #wd.find_element_by_xpath("//div[@id='content']/form[2]/input[2]").click()
-
-        #wd.find_element_by_id("107").is_selected()
-        #wd.find_element_by_id("107").click()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
