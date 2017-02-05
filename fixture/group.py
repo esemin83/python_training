@@ -73,10 +73,14 @@ class GroupHelper:
     def count_groups(self):
         wd = self.app.wd
         self.open_groups_page()
-        return len(wd.find_element_by_name("selected[]").text)
+        return len(wd.find_elements_by_name("selected[]"))
 
 #####################################################################################################
     # contact metods
+
+    def count_contact(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_name("selected[]"))
 
     def add_new_address_form(self, address_data):
         # add new contact
