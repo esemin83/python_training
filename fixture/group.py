@@ -41,7 +41,8 @@ class GroupHelper:
     def open_groups_page(self):
         # open groups page
         wd = self.app.wd
-        wd.find_element_by_link_text("groups").click()
+        if not (wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("edit")) > 0):
+            wd.find_element_by_link_text("groups").click()
 
     def delete_first_group(self):
         wd = self.app.wd
@@ -80,6 +81,7 @@ class GroupHelper:
 
     def count_contact(self):
         wd = self.app.wd
+        self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
     def add_new_address_form(self, address_data):
@@ -118,6 +120,8 @@ class GroupHelper:
         # go to edit page
         self.open_home_page()
         # modify first contact
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img").click()
+        wd.find_element_by_name("modifiy").click()
         self.fill_address_form(address_data)
          # submit modification
         wd.find_element_by_name("update").click()
@@ -125,6 +129,7 @@ class GroupHelper:
 
     def open_home_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img").click()
-        wd.find_element_by_name("modifiy").click()
+        if not(wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("Send e-Mail")) > 0):
+            wd.find_element_by_link_text("home").click()
+            #wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img").click()
+            #wd.find_element_by_name("modifiy").click()
