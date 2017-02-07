@@ -111,6 +111,7 @@ class GroupHelper:
     def delete_first_contact(self):
         wd = self.app.wd
         # submit deletion
+        self.open_home_page()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
