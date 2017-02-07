@@ -7,18 +7,15 @@ class GroupHelper:
     def __init__(self, app):
         self.app = app
 
-    def return_to_group_page(self):
-        wd = self.app.wd
-        wd.find_element_by_link_text("group page").click()
-
     def create(self, group):
         wd = self.app.wd
-        self.init_group_creation()
+        self.open_groups_page()
+        wd.find_element_by_name("new").click()
         # fill group form
         self.fill_group_form(group)
         # submit creation
         wd.find_element_by_name("submit").click()
-        self.return_to_group_page()
+        self.open_groups_page()
 
     def fill_group_form(self, group):
         self.change_field_value("group_name", group.name)
@@ -31,12 +28,6 @@ class GroupHelper:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys("%s" % text)
-
-    def init_group_creation(self):
-        # init group creation
-        wd = self.app.wd
-        self.open_groups_page()
-        wd.find_element_by_name("new").click()
 
     def open_groups_page(self):
         # open groups page
@@ -53,7 +44,7 @@ class GroupHelper:
         # submit deletion
         wd.find_element_by_name("delete").click()
         # return to group page
-        self.return_to_group_page()
+        self.open_groups_page()
 
     def modify_first_group(self, new_group_data):
         wd = self.app.wd
@@ -64,7 +55,7 @@ class GroupHelper:
         self.fill_group_form(new_group_data)
         # submit modification
         wd.find_element_by_name("update").click()
-        self.return_to_group_page()
+        self.open_groups_page()
 
     def select_first_group(self):
         wd = self.app.wd
@@ -126,11 +117,10 @@ class GroupHelper:
         self.fill_address_form(address_data)
          # submit modification
         wd.find_element_by_name("update").click()
-        wd.find_element_by_link_text("home page").click()
+        self.open_home_page()
+        #wd.find_element_by_link_text("home page").click()
 
     def open_home_page(self):
         wd = self.app.wd
         if not(wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("Send e-Mail")) > 0):
             wd.find_element_by_link_text("home").click()
-            #wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img").click()
-            #wd.find_element_by_name("modifiy").click()
