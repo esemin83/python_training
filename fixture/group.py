@@ -1,3 +1,5 @@
+from model.group import Group
+from model.group_address import Address_data
 
 
 class GroupHelper:
@@ -67,8 +69,28 @@ class GroupHelper:
         self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    def get_group_list(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        groups = []
+        for element in wd.find_elements_by_css_selector("span.group"):
+            text = element.text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            groups.append(Group(name=text, id=id))
+        return groups
+
 #####################################################################################################
     # contact metods
+    def get_contact_rows(self):
+        wd = self.app.wd
+        self.open_home_page
+        contacts = []
+        for row in wd.find_elements_by_name("entry"):
+            id = row.find_element_by_name("selected[]").get_attribute("value")
+            text_1 = row.find_element_by_css_selector("td:nth-child(2)").text
+            text_2 = row.find_element_by_css_selector("td:nth-child(3)").text
+            contacts.append(Address_data(id=id, firstname=text_1, middlename=text_2))
+        return contacts
 
     def count_contact(self):
         wd = self.app.wd
@@ -124,3 +146,4 @@ class GroupHelper:
         wd = self.app.wd
         if not(wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("Send e-Mail")) > 0):
             wd.find_element_by_link_text("home").click()
+
