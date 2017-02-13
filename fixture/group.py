@@ -18,6 +18,7 @@ class GroupHelper:
         # submit creation
         wd.find_element_by_name("submit").click()
         self.open_groups_page()
+        self.group_cache = None
 
     def fill_group_form(self, group):
         self.change_field_value("group_name", group.name)
@@ -47,6 +48,7 @@ class GroupHelper:
         wd.find_element_by_name("delete").click()
         # return to group page
         self.open_groups_page()
+        self.group_cache = None
 
     def modify_first_group(self, new_group_data):
         wd = self.app.wd
@@ -58,6 +60,7 @@ class GroupHelper:
         # submit modification
         wd.find_element_by_name("update").click()
         self.open_groups_page()
+        self.group_cache = None
 
     def select_first_group(self):
         wd = self.app.wd
@@ -69,28 +72,35 @@ class GroupHelper:
         self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    group_cache = None
+
     def get_group_list(self):
-        wd = self.app.wd
-        self.open_groups_page()
-        groups = []
-        for element in wd.find_elements_by_css_selector("span.group"):
-            text = element.text
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            groups.append(Group(name=text, id=id))
-        return groups
+        if self.group_cache is None:
+            wd = self.app.wd
+            self.open_groups_page()
+            self.group_cache = []
+            for element in wd.find_elements_by_css_selector("span.group"):
+                text = element.text
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.group_cache.append(Group(name=text, id=id))
+        return list(self.group_cache)
 
 #####################################################################################################
     # contact metods
+
+    contact_cache = None
+
     def get_contact_rows(self):
-        wd = self.app.wd
-        self.open_home_page
-        contacts = []
-        for row in wd.find_elements_by_name("entry"):
-            id = row.find_element_by_name("selected[]").get_attribute("value")
-            text_1 = row.find_element_by_css_selector("td:nth-child(3)").text
-            text_2 = row.find_element_by_css_selector("td:nth-child(2)").text
-            contacts.append(Address_data(id=id, firstname=text_1, lastname=text_2))
-        return contacts
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.open_home_page
+            self.contact_cache = []
+            for row in wd.find_elements_by_name("entry"):
+                id = row.find_element_by_name("selected[]").get_attribute("value")
+                text_1 = row.find_element_by_css_selector("td:nth-child(3)").text
+                text_2 = row.find_element_by_css_selector("td:nth-child(2)").text
+                self.contact_cache.append(Address_data(id=id, firstname=text_1, lastname=text_2))
+        return list(self.contact_cache)
 
     def count_contact(self):
         wd = self.app.wd
@@ -107,6 +117,7 @@ class GroupHelper:
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         wd.find_element_by_link_text("home").click()
+        self.contact_cache = None
 
     def fill_address_form(self, address_data):
         self.change_field_value("firstname", address_data.firstname)
@@ -131,6 +142,7 @@ class GroupHelper:
         wd.switch_to_alert().accept()
         wd.find_element_by_link_text("home").click()
         self.open_home_page()
+        self.contact_cache = None
 
     def modify_contact(self, address_data):
         wd = self.app.wd
@@ -143,6 +155,7 @@ class GroupHelper:
          # submit modification
         wd.find_element_by_name("update").click()
         self.open_home_page()
+        self.contact_cache = None
 
     def open_home_page(self):
         wd = self.app.wd

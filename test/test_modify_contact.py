@@ -13,8 +13,8 @@ def test_modify_contact(app):
                            home_page="www.page_new.ru")
     contact.id = old_list[0].id
     app.group.modify_contact(contact)
+    assert len(old_list) == app.group.count_contact()
     new_list = app.group.get_contact_rows()
-    assert len(old_list) == len(new_list)
     old_list[0] = contact
     #print(sorted(new_list, key=Address_data.id_or_max))
     #print(sorted(old_list, key=Address_data.id_or_max))
