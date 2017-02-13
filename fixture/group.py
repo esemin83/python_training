@@ -87,9 +87,9 @@ class GroupHelper:
         contacts = []
         for row in wd.find_elements_by_name("entry"):
             id = row.find_element_by_name("selected[]").get_attribute("value")
-            text_1 = row.find_element_by_css_selector("td:nth-child(2)").text
-            text_2 = row.find_element_by_css_selector("td:nth-child(3)").text
-            contacts.append(Address_data(id=id, firstname=text_1, middlename=text_2))
+            text_1 = row.find_element_by_css_selector("td:nth-child(3)").text
+            text_2 = row.find_element_by_css_selector("td:nth-child(2)").text
+            contacts.append(Address_data(id=id, firstname=text_1, lastname=text_2))
         return contacts
 
     def count_contact(self):
@@ -106,6 +106,7 @@ class GroupHelper:
         # submit contact creation
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        wd.find_element_by_link_text("home").click()
 
     def fill_address_form(self, address_data):
         self.change_field_value("firstname", address_data.firstname)
@@ -128,6 +129,8 @@ class GroupHelper:
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
+        wd.find_element_by_link_text("home").click()
+        self.open_home_page()
 
     def modify_contact(self, address_data):
         wd = self.app.wd
@@ -140,10 +143,9 @@ class GroupHelper:
          # submit modification
         wd.find_element_by_name("update").click()
         self.open_home_page()
-        #wd.find_element_by_link_text("home page").click()
 
     def open_home_page(self):
         wd = self.app.wd
-        if not(wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("Send e-Mail")) > 0):
+        if not(wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("fdTableSortTrigger")) > 0):
             wd.find_element_by_link_text("home").click()
 
