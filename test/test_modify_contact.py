@@ -1,4 +1,5 @@
 from model.group_address import Address_data
+from random import randrange
 
 
 def test_modify_contact(app):
@@ -11,11 +12,13 @@ def test_modify_contact(app):
                            mobile_phone="+7-521-000-00-00", work_phone="400-00-00",
                            email_1="fake_3@mail.ru", email_2="fake_4@mail.ru",
                            home_page="www.page_new.ru")
-    contact.id = old_list[0].id
-    app.group.modify_contact(contact)
+    index = randrange(len(old_list))
+    print(len(old_list))
+    contact.id = old_list[index].id
+    app.group.modify_some_contact(contact, index)
     assert len(old_list) == app.group.count_contact()
     new_list = app.group.get_contact_rows()
-    old_list[0] = contact
+    old_list[index] = contact
     #print(sorted(new_list, key=Address_data.id_or_max))
     #print(sorted(old_list, key=Address_data.id_or_max))
     assert sorted(new_list, key=Address_data.id_or_max) == sorted(old_list, key=Address_data.id_or_max)
