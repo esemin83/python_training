@@ -18,8 +18,8 @@
       <file leaf-file-name="test_modify_contact.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_modify_contact.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -30,8 +30,8 @@
       <file leaf-file-name="group.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fixture/group.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2316">
-              <caret line="207" column="117" lean-forward="true" selection-start-line="207" selection-start-column="117" selection-end-line="207" selection-end-column="117" />
+            <state relative-caret-position="330">
+              <caret line="199" column="74" lean-forward="true" selection-start-line="199" selection-start-column="8" selection-end-line="199" selection-end-column="74" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -462,8 +462,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python tests.py.test in test_modify_contact.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test in test" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test in test_add_contact.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test in test_add_contact.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test in test" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.py.test in test_del_contact.py" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.py.test in test_modify_group.py" />
       </list>
@@ -486,17 +486,11 @@
     <history-entry file="py_test_in_test - 2017.02.14 at 22h 25m 56s.xml">
       <configuration name="py.test in test" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_add_contact_py - 2017.02.14 at 22h 16m 50s.xml">
+    <history-entry file="py_test_in_test_add_contact_py - 2017.02.14 at 22h 31m 20s.xml">
       <configuration name="py.test in test_add_contact.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_add_contact_py - 2017.02.14 at 22h 16m 58s.xml">
+    <history-entry file="py_test_in_test_add_contact_py - 2017.02.14 at 22h 31m 31s.xml">
       <configuration name="py.test in test_add_contact.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_modify_contact_py - 2017.02.14 at 22h 17m 13s.xml">
-      <configuration name="py.test in test_modify_contact.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_modify_contact_py - 2017.02.14 at 22h 22m 21s.xml">
-      <configuration name="py.test in test_modify_contact.py" configurationId="tests" />
     </history-entry>
     <history-entry file="py_test_in_test_modify_contact_py - 2017.02.14 at 22h 23m 56s.xml">
       <configuration name="py.test in test_modify_contact.py" configurationId="tests" />
@@ -511,6 +505,12 @@
       <configuration name="py.test in test_modify_contact.py" configurationId="tests" />
     </history-entry>
     <history-entry file="py_test_in_test_modify_contact_py - 2017.02.14 at 22h 27m 12s.xml">
+      <configuration name="py.test in test_modify_contact.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_modify_contact_py - 2017.02.14 at 22h 30m 46s.xml">
+      <configuration name="py.test in test_modify_contact.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_modify_contact_py - 2017.02.14 at 22h 34m 32s.xml">
       <configuration name="py.test in test_modify_contact.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -542,7 +542,19 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="99" />
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/test_modify_contact.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/test_modify_contact.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="101" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -837,8 +849,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_modify_contact.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
@@ -847,8 +859,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fixture/group.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2316">
-          <caret line="207" column="117" lean-forward="true" selection-start-line="207" selection-start-column="117" selection-end-line="207" selection-end-column="117" />
+        <state relative-caret-position="330">
+          <caret line="199" column="74" lean-forward="true" selection-start-line="199" selection-start-column="8" selection-end-line="199" selection-end-column="74" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>

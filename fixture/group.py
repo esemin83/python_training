@@ -197,7 +197,7 @@ class GroupHelper:
         wd = self.app.wd
         self.open_home_page()
         self.select_some_contact(index)
-        wd.find_element_by_css_selector("td:nth-child(8)").click()
+        wd.find_elements_by_css_selector("td:nth-child(8)")[index].click()
         self.fill_address_form(address_data)
         wd.find_element_by_name("update").click()
         self.open_home_page()
