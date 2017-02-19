@@ -1,5 +1,6 @@
 from model.group import Group
 from model.group_address import Address_data
+import re
 
 
 class GroupHelper:
@@ -119,8 +120,39 @@ class GroupHelper:
                 id = row.find_element_by_name("selected[]").get_attribute("value")
                 text_1 = row.find_element_by_css_selector("td:nth-child(3)").text
                 text_2 = row.find_element_by_css_selector("td:nth-child(2)").text
-                self.contact_cache.append(Address_data(id=id, firstname=text_1, lastname=text_2))
+                all_phones = row.find_element_by_css_selector("td:nth-child(6)").text#.splitlines()
+                text_3 = row.find_element_by_css_selector("td:nth-child(4)").text
+                text_4 = row.find_element_by_css_selector("td:nth-child(5)").text
+                self.contact_cache.append(Address_data(id=id, firstname=text_1, lastname=text_2,
+                                                       all_phone_from_home_page=all_phones, address=text_3,
+                                                       all_emails=text_4))
         return list(self.contact_cache)
+
+    def get_contact_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_index(index)
+        firstname = wd.find_element_by_name('firstname').get_attribute("value")
+        lastname = wd.find_element_by_name('lastname').get_attribute("value")
+        id = wd.find_element_by_name('id').get_attribute("value")
+        home_phone = wd.find_element_by_name('home').get_attribute("value")
+        mobile_phone = wd.find_element_by_name('mobile').get_attribute("value")
+        work_phone = wd.find_element_by_name('work').get_attribute("value")
+        fax_phone = wd.find_element_by_name('fax').get_attribute("value")
+        address = wd.find_element_by_name('address').text
+        email_1 = wd.find_element_by_name('email').get_attribute("value")
+        email_2 = wd.find_element_by_name('email2').get_attribute("value")
+        return Address_data(firstname=firstname, lastname=lastname, id=id, home_phone=home_phone,
+                            mobile_phone=mobile_phone, work_phone=work_phone, fax_phone=fax_phone,
+                            address=address, email_1=email_1, email_2=email_2)
+
+    def get_contact_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_to_view_by_index(index)
+        text = wd.find_element_by_id("content").text
+        home_phone = re.search("H: (.*)", text).group(1)
+        mobile_phone = re.search("M: (.*)", text).group(1)
+        work_phone = re.search("W: (.*)", text).group(1)
+        return Address_data(home_phone=home_phone, mobile_phone=mobile_phone, work_phone=work_phone)
 
     def count_contact(self):
         wd = self.app.wd
@@ -149,20 +181,22 @@ class GroupHelper:
         self.change_field_value("home", address_data.home_phone)
         self.change_field_value("mobile", address_data.mobile_phone)
         self.change_field_value("work", address_data.work_phone)
+        self.change_field_value("fax", address_data.fax_phone)
         self.change_field_value("email", address_data.email_1)
         self.change_field_value("email2", address_data.email_2)
         self.change_field_value("homepage", address_data.home_page)
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.delete_some_contact(0)
         # submit deletion
-        self.open_home_page()
-        wd.find_element_by_name("selected[]").click()
-        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
-        wd.switch_to_alert().accept()
-        wd.find_element_by_link_text("home").click()
-        self.open_home_page()
-        self.contact_cache = None
+        #self.open_home_page()
+        #wd.find_element_by_name("selected[]").click()
+        #wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        #wd.switch_to_alert().accept()
+        #wd.find_element_by_link_text("home").click()
+        #self.open_home_page()
+        #self.contact_cache = None
 
     def delete_some_contact(self, index):
         wd = self.app.wd
@@ -195,13 +229,24 @@ class GroupHelper:
 
     def modify_some_contact(self, address_data, index):
         wd = self.app.wd
-        self.open_home_page()
-        self.select_some_contact(index)
-        wd.find_elements_by_css_selector("td:nth-child(8)")[index].click()
+        #self.open_home_page()
+        #self.select_some_contact(index)
+        #wd.find_elements_by_css_selector("td:nth-child(8)")[index].click()
+        self.open_contact_to_edit_by_index(index)
         self.fill_address_form(address_data)
         wd.find_element_by_name("update").click()
         self.open_home_page()
         self.contact_cache = None
+
+    def open_contact_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_elements_by_css_selector("td:nth-child(8)")[index].click()
+
+    def open_contact_to_view_by_index(self, index):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_elements_by_css_selector("td:nth-child(7)")[index].click()
 
     def open_home_page(self):
         wd = self.app.wd

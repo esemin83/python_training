@@ -10,7 +10,7 @@ def test_modify_contact(app):
     contact = Address_data(firstname="Jonny", middlename="T", lastname="Tramp", nickname="DT",
                            company="Tramp Inc", address="New York", home_phone="002-22-74",
                            mobile_phone="+7-521-000-00-00", work_phone="400-00-00",
-                           email_1="fake_3@mail.ru", email_2="fake_4@mail.ru",
+                           fax_phone="8885217", email_1="fake_3@mail.ru", email_2="fake_4@mail.ru",
                            home_page="www.page_new.ru")
     index = randrange(len(old_list))
     print(len(old_list))
