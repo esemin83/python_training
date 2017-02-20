@@ -1,4 +1,5 @@
-
+import string
+import random
 
 #def test_to_test(app):
 #    old_contacts = app.group.get_contact_rows()
@@ -25,5 +26,18 @@
 #    sss = app.group.get_contact_from_view_page(0)
 #    print(sss)
 
+def test(app):
+    s = random_numbers(10)
+    m = random_mail("@mail.ru", 10)
+    print(s, "\n" + m)
 
+
+def random_numbers(maxlen):
+    numbers = string.digits + " "*3 + "(" + ")" + "-"
+    return "".join([random.choice(numbers) for x in range(maxlen)])
+
+
+def random_mail(domen, maxlen):
+    value = string.ascii_letters + string.digits
+    return "".join([random.choice(value) for x in range(random.randrange(maxlen))]) + domen
 
