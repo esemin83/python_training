@@ -5,13 +5,17 @@ def test_string_value(app):
     data_from_homepage = app.group.get_contact_rows()[0]
     data_from_edit_page = app.group.get_contact_from_edit_page(0)
     # test names
+    x = merge_names(data_from_homepage)
+    y = merge_names(data_from_edit_page)
     assert merge_names(data_from_homepage) == merge_names(data_from_edit_page)
     # test emails
     assert clear(data_from_homepage.all_emails) == clear(merge_emails(data_from_edit_page))
     # test phones
     assert data_from_homepage.all_phone_from_home_page == merge_phones_like_on_homepage(data_from_edit_page)
     # test address
-    assert data_from_homepage.address == data_from_edit_page.address
+    a1 = clear(data_from_homepage.address)
+    a2 = clear(data_from_edit_page.address)
+    assert clear(data_from_homepage.address) == clear(data_from_edit_page.address)
 
 
 def merge_phones_like_on_homepage(address_data):
@@ -22,7 +26,7 @@ def merge_phones_like_on_homepage(address_data):
 
 
 def merge_names(address_data):
-    return "\n".join([address_data.lastname, address_data.firstname])
+    return "\n".join(map(lambda x: clear(x), [address_data.lastname, address_data.firstname]))
 
 
 def merge_emails(address_data):

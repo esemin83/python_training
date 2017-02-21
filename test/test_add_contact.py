@@ -33,7 +33,7 @@ testdata = [
 
 @pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
 def test_add_contact(app, contact):
-    pass
+    #pass
     old_list = app.group.get_contact_rows()
     app.group.add_new_address_form(contact)
     assert len(old_list) + 1 == app.group.count_contact()
