@@ -16,6 +16,9 @@ def test_del_group(app):
 
 def test_del_all_group(app):
     all_group = app.group.count_groups()
-    for x in range(all_group):
-        app.group.delete_first_group()
+    if all_group == 0:
+        pass
+    else:
+        for x in range(all_group):
+            app.group.delete_first_group()
 
