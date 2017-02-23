@@ -14,6 +14,8 @@ def app(request):
         fixture = Application(browser=browser, base_url=base_url)
     else:
         if not fixture.is_valid():
+            browser = request.config.getoption("--browser")
+            base_url = request.config.getoption("--baseUrl")
             fixture = Application(browser=browser, base_url=base_url)
     fixture.session.ensure_login(username="admin", password="secret")
     return fixture
