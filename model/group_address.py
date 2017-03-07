@@ -29,7 +29,9 @@ class Address_data:
 
     def __eq__(self, other):
         return (self.id is None or self.id == other.id) and self.firstname == other.firstname \
-               and self.lastname == other.lastname and self.address == other.address
+               and self.lastname == other.lastname and self.address == other.address \
+               and self.all_emails == other.all_emails \
+               and self.all_phone_from_home_page == other.all_phone_from_home_page
 
     def id_or_max(self):
         if self.id:

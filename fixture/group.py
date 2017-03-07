@@ -19,6 +19,7 @@ class GroupHelper:
         # submit creation
         wd.find_element_by_name("submit").click()
         self.open_groups_page()
+        #wd.implicitly_wait(20)
         self.group_cache = None
 
     def fill_group_form(self, group):
@@ -97,6 +98,33 @@ class GroupHelper:
                 self.group_cache.append(Group(name=text, id=id))
         return list(self.group_cache)
 
+    def delete_group_by_id(self, id):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.select_group_by_id(id)
+        wd.find_element_by_name("delete").click()
+        self.open_groups_page()
+        #wd.implicitly_wait(20)
+        self.group_cache = None
+
+    def select_group_by_id(self, id):
+        wd = self.app.wd
+        self.open_groups_page()
+        wd.find_element_by_css_selector("input[value= '%s']" % id).click()
+
+    def modify_some_group_by_id(self, new_group_data, id):
+        wd = self.app.wd
+        #self.select_first_group()
+        # open modification form
+        self.select_group_by_id(id)
+        wd.find_element_by_name("edit").click()
+        # fill group form
+        self.fill_group_form(new_group_data)
+        # submit modification
+        wd.find_element_by_name("update").click()
+        self.open_groups_page()
+        self.group_cache = None
+
 #####################################################################################################
     # contact metods
 
@@ -111,7 +139,7 @@ class GroupHelper:
                 id = row.find_element_by_name("selected[]").get_attribute("value")
                 text_1 = row.find_element_by_css_selector("td:nth-child(3)").text
                 text_2 = row.find_element_by_css_selector("td:nth-child(2)").text
-                all_phones = row.find_element_by_css_selector("td:nth-child(6)").text#.splitlines()
+                all_phones = row.find_element_by_css_selector("td:nth-child(6)").text
                 text_3 = row.find_element_by_css_selector("td:nth-child(4)").text
                 text_4 = row.find_element_by_css_selector("td:nth-child(5)").text
                 self.contact_cache.append(Address_data(id=id, firstname=text_1, lastname=text_2,
@@ -180,20 +208,11 @@ class GroupHelper:
     def delete_first_contact(self):
         wd = self.app.wd
         self.delete_some_contact(0)
-        # submit deletion
-        #self.open_home_page()
-        #wd.find_element_by_name("selected[]").click()
-        #wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
-        #wd.switch_to_alert().accept()
-        #wd.find_element_by_link_text("home").click()
-        #self.open_home_page()
-        #self.contact_cache = None
 
     def delete_some_contact(self, index):
         wd = self.app.wd
         # submit deletion
         self.open_home_page()
-        #wd.find_element_by_name("selected[]").click()
         self.select_some_contact(index)
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
@@ -220,9 +239,6 @@ class GroupHelper:
 
     def modify_some_contact(self, address_data, index):
         wd = self.app.wd
-        #self.open_home_page()
-        #self.select_some_contact(index)
-        #wd.find_elements_by_css_selector("td:nth-child(8)")[index].click()
         self.open_contact_to_edit_by_index(index)
         self.fill_address_form(address_data)
         wd.find_element_by_name("update").click()
@@ -243,4 +259,30 @@ class GroupHelper:
         wd = self.app.wd
         if not(wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("fdTableSortTrigger")) > 0):
             wd.find_element_by_link_text("home").click()
+
+    def delete_some_contact_by_id(self, id):
+        wd = self.app.wd
+        # submit deletion
+        self.open_home_page()
+        self.select_some_contact_by_id(id)
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        wd.switch_to_alert().accept()
+        wd.find_element_by_link_text("home").click()
+        self.open_home_page()
+        self.contact_cache = None
+
+    def select_some_contact_by_id(self, id):
+        wd = self.app.wd
+        #wd.find_elements_by_name("selected[]")[id].click()
+        wd.find_element_by_css_selector("input[value= '%s']" % id).click()
+
+    def modify_some_contact_by_id(self, address_data, id):
+        wd = self.app.wd
+        #self.open_contact_to_edit_by_index(index)
+        self.select_some_contact_by_id(id)
+        wd.find_element_by_css_selector("td:nth-child(8)").click()
+        self.fill_address_form(address_data)
+        wd.find_element_by_name("update").click()
+        self.open_home_page()
+        self.contact_cache = None
 
