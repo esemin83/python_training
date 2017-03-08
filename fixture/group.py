@@ -273,16 +273,48 @@ class GroupHelper:
 
     def select_some_contact_by_id(self, id):
         wd = self.app.wd
-        #wd.find_elements_by_name("selected[]")[id].click()
         wd.find_element_by_css_selector("input[value= '%s']" % id).click()
 
     def modify_some_contact_by_id(self, address_data, id):
         wd = self.app.wd
-        #self.open_contact_to_edit_by_index(index)
         self.select_some_contact_by_id(id)
         wd.find_element_by_css_selector("td:nth-child(8)").click()
         self.fill_address_form(address_data)
         wd.find_element_by_name("update").click()
         self.open_home_page()
         self.contact_cache = None
+
+########################################################################
+    def add_contact_to_group(self, contact_id, number):
+        wd = self.app.wd
+        self.open_home_page()
+        self.select_some_contact_by_id(contact_id)
+        wd.implicitly_wait(1)
+        wd.find_element_by_name("to_group").click()
+        wd.implicitly_wait(1)
+        wd.find_element_by_xpath("//form[@id='right']/select//option['%s']" % number).click()
+        #wd.find_element_by_xpath("//option[value= '%s']" % group_id).click()
+        #wd.find_element_by_css_selector("option[value= '%s']" % group_id).click()
+        #wd.find_element_by_id('208')
+        wd.implicitly_wait(1)
+        wd.find_element_by_name("add").click()
+        wd.implicitly_wait(1)
+        self.open_home_page()
+
+    def delete_contact_from_group(self, contact_id, number):
+        wd = self.app.wd
+        self.open_home_page()
+        self.open_group_list_to_edit(number)
+        self.select_some_contact_by_id(contact_id)
+        wd.find_element_by_name("remove").click()
+        self.open_home_page()
+
+    def open_group_list_to_edit(self, number):
+        wd = self.app.wd
+        wd.find_element_by_name("group").click()
+        wd.find_element_by_xpath("//form[@id='right']/select//option['%s']" % number).click()
+
+
+
+
 

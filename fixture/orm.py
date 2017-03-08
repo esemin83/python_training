@@ -2,8 +2,7 @@ from datetime import datetime
 from pony.orm import *
 from model.group import Group
 from model.group_address import Address_data
-from pymysql.converters import decoders
-
+from pymysql.converters import encoders, decoders, convert_mysql_timestamp
 
 class ORMFixture:
 
@@ -23,10 +22,15 @@ class ORMFixture:
         firstname = Optional(str, column='firstname')
         lastname = Optional(str, column='lastname')
         deprecated = Optional(datetime, column='deprecated')
+        address = Optional(str, column='address')
+        home_phone = Optional(str, column='home')
         groups = Set(lambda: ORMFixture.ORMGroup, table="address_in_groups", column="group_id", reverse="contacts", lazy=True)
 
     def __init__(self, host, name, user, password):
-        self.db.bind('mysql', host=host, database=name, user=user, password=password, conv=decoders)
+        conv = encoders
+        conv.update(decoders)
+        conv[datetime] = convert_mysql_timestamp
+        self.db.bind('mysql', host=host, database=name, user=user, password=password, conv=conv)
         self.db.generate_mapping()
         sql_debug(True)
 
@@ -37,7 +41,8 @@ class ORMFixture:
 
     def convert_contacts_to_model(self, contacts):
         def convert(contact):
-            return Address_data(id=str(contact.id), firstname=contact.firstname, lastname=contact.lastname)
+            return Address_data(id=str(contact.id), firstname=contact.firstname, lastname=contact.lastname,
+                                address=contact.address, home_phone=contact.home_phone)
         return list(map(convert, contacts))
 
     @db_session
@@ -52,3 +57,11 @@ class ORMFixture:
     def get_contact_in_groups(self, group):
         orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]
         return self.convert_contacts_to_model(orm_group.contacts)
+
+    @db_session
+    def get_contact_not_in_groups(self, group):
+        orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]
+        return self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if c.deprecated is None and orm_group not in c.groups))
+
+    def destroy(self):
+        self.connection.close()
