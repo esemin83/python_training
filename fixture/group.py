@@ -1,6 +1,7 @@
 from model.group import Group
 from model.group_address import Address_data
 import re
+from selenium.webdriver.support.ui import Select
 
 
 class GroupHelper:
@@ -285,34 +286,49 @@ class GroupHelper:
         self.contact_cache = None
 
 ########################################################################
-    def add_contact_to_group(self, contact_id, number):
+    def add_contact_to_group(self, contact_id, group_id):
         wd = self.app.wd
         self.open_home_page()
         self.select_some_contact_by_id(contact_id)
         wd.implicitly_wait(1)
         wd.find_element_by_name("to_group").click()
         wd.implicitly_wait(1)
-        wd.find_element_by_xpath("//form[@id='right']/select//option['%s']" % number).click()
+
+        #wd.find_element_by_xpath("//form[@id='right']/select//option['%s']" % number).click()
+
         #wd.find_element_by_xpath("//option[value= '%s']" % group_id).click()
-        #wd.find_element_by_css_selector("option[value= '%s']" % group_id).click()
+        wd.find_element_by_css_selector("option[value= '%s']" % group_id).click()
+        wd.switch_to_alert().accept()
+
         #wd.find_element_by_id('208')
         wd.implicitly_wait(1)
         wd.find_element_by_name("add").click()
         wd.implicitly_wait(1)
         self.open_home_page()
 
-    def delete_contact_from_group(self, contact_id, number):
+    def delete_contact_from_group(self, contact_id, group_id):
         wd = self.app.wd
         self.open_home_page()
-        self.open_group_list_to_edit(number)
+        self.open_group_list_to_edit(group_id)
         self.select_some_contact_by_id(contact_id)
         wd.find_element_by_name("remove").click()
         self.open_home_page()
 
-    def open_group_list_to_edit(self, number):
+    def open_group_list_to_edit(self, group_id):
         wd = self.app.wd
-        wd.find_element_by_name("group").click()
-        wd.find_element_by_xpath("//form[@id='right']/select//option['%s']" % number).click()
+        element = wd.find_element_by_name("group")
+        select = Select(element)
+        select.select_by_value("%s" % group_id)
+
+    def add_contact_to_group_v01(self, contact_id, group_id):
+        wd = self.app.wd
+        self.open_home_page()
+        self.select_some_contact_by_id(contact_id)
+        element = wd.find_element_by_name("to_group")
+        select = Select(element)
+        select.select_by_value("%s" % group_id)
+        wd.find_element_by_name("add").click()
+        self.open_home_page()
 
 
 
