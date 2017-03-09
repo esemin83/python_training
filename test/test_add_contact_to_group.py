@@ -26,7 +26,8 @@ def test_add_contact_to_group_orm(app, orm):
     added_contact = []
     added_contact.append(contact_to_add)
 
-    assert orm.get_contact_in_groups(group_to_add) == added_contact
+    #assert orm.get_contact_in_groups(group_to_add) == added_contact
+    assert orm.get_contact_in_groups(group_to_add).index(contact_to_add) is not None
 
 
 #def test_add_contact_to_group_1(app, db, orm):
