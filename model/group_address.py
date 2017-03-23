@@ -4,7 +4,7 @@ from sys import maxsize
 class Address_data:
     def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, company=None, address=None,
                  home_phone=None, mobile_phone=None, work_phone=None, fax_phone=None, email_1=None, email_2=None, home_page=None,
-                 id=None, all_phone_from_home_page=None, all_emails=None):
+                 id=None, all_phone_from_home_page=None, all_emails=None, deprecated=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
@@ -21,6 +21,7 @@ class Address_data:
         self.all_emails = all_emails
         self.home_page = home_page
         self.id = id
+        self.deprecated = deprecated
 
     def __repr__(self):
         return "%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s" % (self.id, self.firstname, self.lastname, self.home_phone,

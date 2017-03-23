@@ -42,8 +42,10 @@ class ORMFixture:
     def convert_contacts_to_model(self, contacts):
         def convert(contact):
             return Address_data(id=str(contact.id), firstname=contact.firstname, lastname=contact.lastname,
-                                address=contact.address, home_phone=contact.home_phone)
+                                address=contact.address, home_phone=contact.home_phone, deprecated=contact.deprecated)
         return list(map(convert, contacts))
+
+    #lambda deprecated: deprecated == '0000-00-00 00:00:00',
 
     @db_session
     def get_group_list(self):
@@ -61,7 +63,8 @@ class ORMFixture:
     @db_session
     def get_contact_not_in_groups(self, group):
         orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]
-        return self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if c.deprecated is None and orm_group not in c.groups))
+        return self.convert_contacts_to_model(select(
+            c for c in ORMFixture.ORMContact if c.deprecated is None and orm_group not in c.groups))
 
     def destroy(self):
         self.connection.close()
