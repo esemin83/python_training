@@ -1,0 +1,44 @@
+{
+  "uid" : "8bf7d43328fcf65c",
+  "name" : "test_add_group_db[None:name1::1]",
+  "title" : "Test add group db [None:name1::1]",
+  "time" : {
+    "start" : 1490625862175,
+    "stop" : 1490625862918,
+    "duration" : 743
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "cae929d1a746c2d6",
+    "name" : "test.test_add_group",
+    "title" : "Test add group"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "saymon_pc"
+  }, {
+    "name" : "thread",
+    "value" : "4592-MainThread"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  }, {
+    "name" : "severity",
+    "value" : "normal"
+  }, {
+    "name" : "suite-name",
+    "value" : "test.test_add_group"
+  } ],
+  "parameters" : [ ]
+}

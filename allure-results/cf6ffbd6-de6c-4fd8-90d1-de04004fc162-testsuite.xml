@@ -1,0 +1,93 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1490627951776" stop="1490627956258">
+  <name>test.test_add_group</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1490627951776" status="passed" stop="1490627954711">
+      <name>test_add_group[None:name1::0]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="4540-MainThread"/>
+        <label name="host" value="saymon_pc"/>
+      </labels>
+      <steps>
+        <step start="1490627953893" status="passed" stop="1490627954052">
+          <name>Given a group list</name>
+          <title>Given a group list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1490627954052" status="passed" stop="1490627954646">
+          <name>When I add the group None:name1:: to the list</name>
+          <title>When I add the group None:name1:: to the list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1490627954646" status="passed" stop="1490627954711">
+          <name>the new group list is equal to the old list with added group</name>
+          <title>the new group list is equal to the old list with added group</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1490627954712" status="passed" stop="1490627955476">
+      <name>test_add_group[None:name1::1]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="4540-MainThread"/>
+        <label name="host" value="saymon_pc"/>
+      </labels>
+      <steps>
+        <step start="1490627954759" status="passed" stop="1490627954759">
+          <name>Given a group list</name>
+          <title>Given a group list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1490627954759" status="passed" stop="1490627955396">
+          <name>When I add the group None:name1:: to the list</name>
+          <title>When I add the group None:name1:: to the list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1490627955396" status="passed" stop="1490627955476">
+          <name>the new group list is equal to the old list with added group</name>
+          <title>the new group list is equal to the old list with added group</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1490627955477" status="passed" stop="1490627956258">
+      <name>test_add_group[None:name1':':']</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="4540-MainThread"/>
+        <label name="host" value="saymon_pc"/>
+      </labels>
+      <steps>
+        <step start="1490627955521" status="passed" stop="1490627955521">
+          <name>Given a group list</name>
+          <title>Given a group list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1490627955521" status="passed" stop="1490627956180">
+          <name>When I add the group None:name1':':' to the list</name>
+          <title>When I add the group None:name1':':' to the list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1490627956180" status="passed" stop="1490627956258">
+          <name>the new group list is equal to the old list with added group</name>
+          <title>the new group list is equal to the old list with added group</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

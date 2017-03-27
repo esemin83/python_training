@@ -1,0 +1,89 @@
+{
+  "uid" : "6a7061dcf6df2283",
+  "name" : "test_add_group[None:name1':':']",
+  "title" : "Test add group [None:name1':':']",
+  "time" : {
+    "start" : 1490627955477,
+    "stop" : 1490627956258,
+    "duration" : 781
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 3
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "a5934ca8edb606e7",
+    "name" : "test.test_add_group",
+    "title" : "Test add group"
+  },
+  "steps" : [ {
+    "name" : "Given a group list",
+    "title" : "Given a group list",
+    "time" : {
+      "start" : 1490627955521,
+      "stop" : 1490627955521,
+      "duration" : 0
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "When I add the group None:name1':':' to the list",
+    "title" : "When I add the group None:name1':':' to the list",
+    "time" : {
+      "start" : 1490627955521,
+      "stop" : 1490627956180,
+      "duration" : 659
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "the new group list is equal to the old list with added group",
+    "title" : "the new group list is equal to the old list with added group",
+    "time" : {
+      "start" : 1490627956180,
+      "stop" : 1490627956258,
+      "duration" : 78
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "saymon_pc"
+  }, {
+    "name" : "thread",
+    "value" : "4540-MainThread"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  }, {
+    "name" : "severity",
+    "value" : "normal"
+  }, {
+    "name" : "suite-name",
+    "value" : "test.test_add_group"
+  } ],
+  "parameters" : [ ]
+}

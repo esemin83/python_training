@@ -1,0 +1,42 @@
+{
+  "hosts" : [ {
+    "title" : "saymon_pc",
+    "threads" : [ {
+      "title" : "4540-MainThread",
+      "testCases" : [ {
+        "uid" : "be73cd8bbd7a1a9d",
+        "name" : "test_add_group[None:name1::0]",
+        "title" : "Test add group [None:name1::0]",
+        "time" : {
+          "start" : 1490627951776,
+          "stop" : 1490627954711,
+          "duration" : 2935
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "ebfce44dba357318",
+        "name" : "test_add_group[None:name1::1]",
+        "title" : "Test add group [None:name1::1]",
+        "time" : {
+          "start" : 1490627954712,
+          "stop" : 1490627955476,
+          "duration" : 764
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "6a7061dcf6df2283",
+        "name" : "test_add_group[None:name1':':']",
+        "title" : "Test add group [None:name1':':']",
+        "time" : {
+          "start" : 1490627955477,
+          "stop" : 1490627956258,
+          "duration" : 781
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      } ]
+    } ]
+  } ]
+}

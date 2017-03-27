@@ -1,0 +1,89 @@
+{
+  "uid" : "24e0cb46ed562ff8",
+  "name" : "test_add_group[None:name1::0]",
+  "title" : "Test add group [None:name1::0]",
+  "time" : {
+    "start" : 1490627688432,
+    "stop" : 1490627694944,
+    "duration" : 6512
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 3
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "42ed5b4a652fbd4c",
+    "name" : "test.test_add_group",
+    "title" : "Test add group"
+  },
+  "steps" : [ {
+    "name" : "Given a group list",
+    "title" : "Given a group list",
+    "time" : {
+      "start" : 1490627693347,
+      "stop" : 1490627693768,
+      "duration" : 421
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "When I add the group None:name1:: to the list",
+    "title" : "When I add the group None:name1:: to the list",
+    "time" : {
+      "start" : 1490627693768,
+      "stop" : 1490627694615,
+      "duration" : 847
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "the new group list is equal to the old list with added group",
+    "title" : "the new group list is equal to the old list with added group",
+    "time" : {
+      "start" : 1490627694615,
+      "stop" : 1490627694943,
+      "duration" : 328
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "thread",
+    "value" : "8004-MainThread"
+  }, {
+    "name" : "host",
+    "value" : "saymon_pc"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  }, {
+    "name" : "severity",
+    "value" : "normal"
+  }, {
+    "name" : "suite-name",
+    "value" : "test.test_add_group"
+  } ],
+  "parameters" : [ ]
+}
