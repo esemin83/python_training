@@ -4,6 +4,7 @@ from model.group import Group
 from model.group_address import Address_data
 from pymysql.converters import encoders, decoders, convert_mysql_timestamp
 
+
 class ORMFixture:
 
     db = Database()
